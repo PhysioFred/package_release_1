@@ -23,3 +23,12 @@ services:
       - prometheus
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
+
+  nginx-exporter:
+    image: nginx/nginx-prometheus-exporter:latest
+    ports:
+      - "9113:9113"
+    command:
+      - -nginx.scrape-uri=http://nginx:80/stub_status
+    depends_on:
+      - nginx
