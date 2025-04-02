@@ -1,0 +1,56 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - feature/initial_upload
+      - main
+  pull_request:
+    branches:
+      - feature/initial_upload
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Docker Buildx for building Docker images
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # Step 3: Build the Nginx image using the Dockerfile
+      - name: Build Nginx image
+        run: |
+          docker build -t github-actions-nginx:latest .
+
+      # Step 4: Start the services using docker compose
+      - name: Start services with Docker Compose
+        run: |
+          docker compose up -d
+
+      # Step 5: Verify the services are running
+      - name: Verify services
+        run: |
+          # Wait for a few seconds to ensure services are up
+          sleep 10
+          # Check if containers are running
+          docker compose ps
+          # Test Nginx stub_status endpoint
+          curl --fail http://localhost:8080/stub_status
+          # Test Nginx Prometheus Exporter metrics endpoint
+          curl --fail http://localhost:9113/metrics
+          # Test Prometheus metrics endpoint
+          curl --fail http://localhost:9090/metrics
+          # Test Grafana (just check if the port is accessible)
+          curl --fail http://localhost:3000
+
+      # Step 6: Clean up by stopping the services
+      - name: Stop services
+        if: always()  # Run this step even if previous steps fail
+        run: |
+          docker compose down
