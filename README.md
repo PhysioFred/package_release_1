@@ -1,2 +1,2 @@
 # github_actions_nginx
-learning cicd with Github actions
+learning cicd with Github actions, starting simple then going complex
