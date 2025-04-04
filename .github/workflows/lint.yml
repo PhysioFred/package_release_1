@@ -1,0 +1,44 @@
+name: Lint Codebase
+
+on:
+  push:
+    branches:
+      - feature/initial_upload
+      - main
+  pull_request:
+    branches:
+      - feature/initial_upload
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Python for yamllint
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      # Step 3: Install yamllint
+      - name: Install yamllint
+        run: pip install yamllint
+
+      # Step 4: Lint YAML files
+      - name: Lint YAML files
+        run: yamllint -c .yamllint.yml .github/workflows/
+
+      # Step 5: Install hadolint for Dockerfile linting
+      - name: Install hadolint
+        run: |
+          wget -O /usr/local/bin/hadolint https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-x86_64
+          chmod +x /usr/local/bin/hadolint
+
+      # Step 6: Lint Dockerfile
+      - name: Lint Dockerfile
+        run: hadolint Dockerfile

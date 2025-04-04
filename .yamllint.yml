@@ -1,0 +1,17 @@
+extends: default
+
+rules:
+  # Enforce 2-space indentation
+  indentation:
+    spaces: 2
+    indent-sequences: true
+  # Limit line length to 80 characters
+  line-length:
+    max: 80
+  # Allow empty lines for readability
+  empty-lines:
+    max: 2
+  # Require a newline at the end of the file
+  new-line-at-end-of-file: enable
+  # Disallow trailing spaces
+  trailing-spaces: enable
