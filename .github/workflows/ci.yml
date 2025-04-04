@@ -54,7 +54,7 @@
             # Test Nginx Prometheus Exporter metrics endpoint
             curl --fail http://localhost:9113/metrics
             # Test Prometheus metrics endpoint
-            curl --fail http://localhost:9090/metrics
+            curl --fail http://localhost:9999/metrics
             # Test Grafana (just check if the port is accessible)
             curl --fail http://localhost:3000
   
@@ -67,3 +67,4 @@
           if: always()  # Run this step even if previous steps fail
           run: |
             docker compose down
+            
