@@ -1,13 +1,14 @@
+---
 extends: default
 
 rules:
   # Enforce 2-space indentation
   indentation:
     spaces: 2
-    indent-sequences: true
+    indent-sequences: yes
   # Limit line length to 80 characters
   line-length:
-    max: 130
+    max: 80
   # Allow empty lines for readability
   empty-lines:
     max: 2
