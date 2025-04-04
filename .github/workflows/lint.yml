@@ -1,6 +1,6 @@
 ---
   name: Lint Codebase
-  
+
   on:
     push:
       branches:
@@ -44,3 +44,4 @@
         # Step 6: Lint Dockerfile
         - name: Lint Dockerfile
           run: hadolint Dockerfile
+          
