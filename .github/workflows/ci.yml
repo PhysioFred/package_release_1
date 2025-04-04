@@ -61,7 +61,7 @@
         # Debug Step: End of Workflow
         - name: Debug - End of Workflow
           run: echo "GitHub Actions pipeline executed successfully!"
-  
+
         # Step 6: Clean up by stopping the services
         - name: Stop services
           if: always()  # Run this step even if previous steps fail
