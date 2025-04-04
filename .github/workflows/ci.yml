@@ -15,10 +15,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Update and Upgrade OS
-        run: |
-          sudo apt update -y 
-          sudo apt upgrade -y
 
       # Step 1: Check out the repository code
       - name: Checkout code
