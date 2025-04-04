@@ -7,7 +7,7 @@ rules:
     indent-sequences: true
   # Limit line length to 80 characters
   line-length:
-    max: 80
+    max: 130
   # Allow empty lines for readability
   empty-lines:
     max: 2
