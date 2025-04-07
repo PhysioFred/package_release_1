@@ -1,19 +1,19 @@
 ---
-  name: Lint Codebase
-  
-  on:
-    push:
-      branches:
-        - feature/initial_upload
-        - main
-    pull_request:
-      branches:
-        - feature/initial_upload
-        - main
-  
-  jobs:
-    call-lint:
-      uses: ./.github/workflows/reusable-lint.yml
-      with:
-        yaml-dir: .github/workflows/
-        dockerfile-path: Dockerfile
+name: Lint Codebase
+
+on:
+  push:
+    branches:
+      - feature/initial_upload
+      - main
+  pull_request:
+    branches:
+      - feature/initial_upload
+      - main
+
+jobs:
+  call-lint:
+    uses: ./.github/workflows/reusable-lint.yml
+    with:
+      yaml-dir: .github/workflows/
+      dockerfile-path: Dockerfile
